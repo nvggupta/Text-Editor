@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-
-function NotesList({ index, ind, deleteHandler, itemIndex, getIndex, title }) {
+import { MdOutlineDeleteOutline } from "react-icons/md";
+function NotesList({ index, ind, deleteHandler, itemIndex,  title , getId  }) {
   const [localTitle, setLocalTitle] = useState(title);
 
   useEffect(() => {
@@ -10,14 +10,15 @@ function NotesList({ index, ind, deleteHandler, itemIndex, getIndex, title }) {
   return (
     <div
       onClick={() => {
+        console.log("triggered");
         itemIndex(ind);
-        getIndex(index);
+        getId(index);
       }}
-      style={{ display: "flex", flexWrap: "wrap" }}
+      style={{ display: "flex", flexWrap: "wrap"   , gap: "10px" }}
       key={ind}
     >
       <div>{localTitle}</div>
-      <button onClick={() => deleteHandler(ind)}>Delete</button>
+      <button onClick={() => deleteHandler(ind)}><MdOutlineDeleteOutline /></button>
     </div>
   );
 }

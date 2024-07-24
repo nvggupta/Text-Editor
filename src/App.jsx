@@ -6,7 +6,7 @@ import "./styles.css"
 export default function App() {
   const [items, setItems] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(null);
-
+  const [index , setIndex] = useState(null);
   const AddItems = () => {
     const newItems = { id: uuidv4(), body: "" };
     const updatedArray = [...items, newItems];
@@ -21,15 +21,20 @@ export default function App() {
       setCurrentIndex(null);
     }
   };
-
+ const getId = (ind) =>{
+  console.log(ind);
+  setIndex(ind);
+ }
   const itemIndex = (id) => {
+    console.log("id" , id);
     setCurrentIndex(id);
   };
 
-  const setBody = (state) => {
+  const setBody = (event) => {
+      console.log(event);
     const updatedItems = items.map((elem) =>
       elem.id === currentIndex
-        ? { ...elem, body: state.target.value }
+        ? { ...elem, body: event }
         : elem
     );
     setItems(updatedItems);
@@ -41,12 +46,14 @@ export default function App() {
         <div className="notes">
           <div onClick={AddItems}>Add Notes +</div>
           <div className="notesList">
-            {items.map((elem) => (
+            {items.map((elem , id) => (
               <NotesList
                 key={elem.id}
                 deleteHandler={deleteHandler}
                 ind={elem.id}
+                index={id}
                 itemIndex={itemIndex}
+                getId={getId}
                 title={
                   elem.body ? elem.body.split("\n")[0] : "Enter Title Text"
                 }
@@ -54,10 +61,10 @@ export default function App() {
             ))}
           </div>
         </div>
-        {currentIndex !== null ? (
-          <MarkdownEditor
-            value={items.find((item) => item.id === currentIndex)?.body || ""}
-            onChange={setBody}
+        {currentIndex !== null && index!=null && items[index] ? (
+          <MarkdownEditor className="editor"
+             value={items[index].body}
+            onChange={(value) => setBody(value)}
           />
         ) : (
           <p>Enter some Items</p>

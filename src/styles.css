@@ -8,18 +8,21 @@
     height: 100vh;
   }
   .notes {
-    width: 25%;
+    width: 15%;
     display: flex;
     flex-direction: column;
+    gap: 10px;
   }
   .notesList {
-    border: 1px solid red;
     display: flex;
     flex-direction: column;
     justify-content: center;
     height: fit-content;
+    gap: 15px;
   }
   .notes :nth-child(1) {
     cursor: pointer;
   }
-  
+  .editor{
+    width: 85%;
+  }
