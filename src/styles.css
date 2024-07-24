@@ -1,0 +1,25 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  .outer {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+  }
+  .notes {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+  }
+  .notesList {
+    border: 1px solid red;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: fit-content;
+  }
+  .notes :nth-child(1) {
+    cursor: pointer;
+  }
+  
